@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch'
   },
   welcome: {
+    flex: 0,
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
