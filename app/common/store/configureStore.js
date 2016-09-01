@@ -13,8 +13,7 @@ export default function configureStore( initialState) {
     initialState,
     compose(
       applyMiddleware(...middlewares),
-      devTools(),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
+      devTools()
     )
   )
   
