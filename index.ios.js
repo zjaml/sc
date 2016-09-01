@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react'
-import Main from './Main'
+import Main from './app/Main'
 import {AppRegistry} from 'react-native'
 
 class snapcoin extends Component {

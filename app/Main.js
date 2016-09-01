@@ -17,7 +17,7 @@ class Main extends Component {
           longitudeDelta: 0.0421,
         }}></MapView>
         <Text style={styles.welcome}>
-          Hellos
+          Hello
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
