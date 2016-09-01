@@ -20,5 +20,8 @@
     "redux-thunk": "^2.0.1",
     "reselect": "^2.2.1",
     "rest": "^2.0.0"
+  },
+  "devDependencies": {
+    "remote-redux-devtools": "^0.4.7"
   }
 }
