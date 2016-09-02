@@ -17,7 +17,7 @@ export default function configureStore( initialState) {
     )
   )
   
-  devTools.updateStore()
+  devTools.updateStore(store)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
