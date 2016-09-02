@@ -5,34 +5,34 @@ import {
   View
 } from 'react-native'
 import MapView from 'react-native-maps'
-import { Provider } from 'react-redux'
-import configureStore from './common/store/configureStore'
-
-const store = configureStore()
+import {loadTasks} from './common/actions'
+import {connect} from 'react-redux'
 
 class Main extends Component {
+  componentWillMount() {
+    this.props.loadTasks()
+  }
+  
   render() {
     return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <MapView style={styles.map} initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}></MapView>
-          <Text style={styles.welcome}>
-            Hello
-          </Text>
-          <Text style={styles.instructions}>
-            To get started, edit index.android.js
-          </Text>
-          <Text style={styles.instructions}>
-            Double tap R on your keyboard to reload, {'\n'}
-            Shake or press menu button for dev menu
-          </Text>
-        </View>
-      </Provider>
+      <View style={styles.container}>
+        <MapView style={styles.map} initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}></MapView>
+        <Text style={styles.welcome}>
+          Hello
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit index.android.js
+        </Text>
+        <Text style={styles.instructions}>
+          Double tap R on your keyboard to reload, {'\n'}
+          Shake or press menu button for dev menu
+        </Text>
+      </View>
     )
   }
 }
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Main;
+export default connect(null, {loadTasks})(Main);

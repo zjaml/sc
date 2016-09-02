@@ -17,3 +17,11 @@ export function loadMyKeys() {
     }
   }
 }
+
+export function loadTasks() {
+  return dispatch => {
+    return {
+      type: actionTypes.FETCH_TASKS,
+      response: {}
+    }}
+}
