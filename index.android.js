@@ -4,16 +4,21 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  AppRegistry
-} from 'react-native';
-import Main from './Main'
+import React, { Component } from 'react'
+import Route from './app/Route'
+import {AppRegistry} from 'react-native'
+import configureStore from './app/common/store/configureStore'
+import { Provider } from 'react-redux'
+
+const store = configureStore()
 class snapcoin extends Component {
   render() {
     return (
-      <Main/>
-    )
+      <Provider store={store}>
+        <Route/>
+      </Provider>
+      
+    );
   }
 }
 
