@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react'
-import Main from './app/Main'
+import Route from './app/Route'
 import {AppRegistry} from 'react-native'
 import configureStore from './app/common/store/configureStore'
 import { Provider } from 'react-redux'
@@ -15,7 +15,7 @@ class snapcoin extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Main></Main>
+        <Route/>
       </Provider>
     );
   }
