@@ -1,27 +1,27 @@
 import * as actionTypes from '../constants/ActionTypes'
+import {Schema, arrayOf, normalize} from 'normalizr'
+import {stores} from '../dummy/tasks'
 
-export function loadMyKeys() {
-  return (dispatch) => {
-    // return client({
-    //   path: 'api/mykeys',
-    //   method: 'post'
-    // })
-    //   .then(res => {
-    //     dispatch(receiveKeys(res.entity))
-    //   }, res => {
-    //     dispatch(receiveErrorResponse(res.entity.message))
-    //   })
-    return {
-      type: actionTypes.RECEIVE_KEY,
-      response: normalized
-    }
-  }
-}
+const storeSchema = new Schema('store', {
+  idAttribute: 'id'
+})
+
+const taskSchema = new Schema('task', {
+  idAttribute: 'id'
+})
+
+storeSchema.define({
+  tasks: arrayOf(taskSchema)
+})
 
 export function loadTasks() {
   return dispatch => {
-    return {
-      type: actionTypes.FETCH_TASKS,
-      response: {}
-    }}
+    setTimeout(function() {
+      const normalized = normalize(stores, arrayOf(storeSchema))
+      dispatch({
+        type: actionTypes.RECEIVE_TASKS,
+        response: normalized
+      })
+    }, 100);
+  }
 }
