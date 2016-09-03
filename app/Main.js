@@ -7,6 +7,8 @@ import {
 import MapView from 'react-native-maps'
 import {loadTasks} from './common/actions'
 import {connect} from 'react-redux'
+import {getStores} from './common/selectors'
+
 
 class Main extends Component {
   componentWillMount() {
@@ -14,6 +16,7 @@ class Main extends Component {
   }
   
   render() {
+    console.log(`rendering with: ${this.props.stores}`);
     return (
       <View style={styles.container}>
         <MapView style={styles.map} initialRegion={{
@@ -21,7 +24,11 @@ class Main extends Component {
           longitude: -122.4324,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }}></MapView>
+        }}>
+          {this.props.stores && this.props.stores.map(store=> (
+            <MapView.Marker coordinate={store.coordinate} title={store.name}/>
+          ))}
+        </MapView>
         <Text style={styles.welcome}>
           Hello
         </Text>
@@ -61,5 +68,10 @@ const styles = StyleSheet.create({
   },
 });
 
+function mapStateToProps(state){
+  return {
+    stores: getStores(state)
+  }
+}
 
-export default connect(null, {loadTasks})(Main);
+export default connect(mapStateToProps, {loadTasks})(Main);
