@@ -8,12 +8,13 @@ import MapView from 'react-native-maps'
 import {loadTasks} from './common/actions'
 import {connect} from 'react-redux'
 import {getStores} from './common/selectors'
-
+import _ from 'lodash'
 
 class Main extends Component {
   constructor(){
+    super()
     this.state = {
-      selectedStoreId: null
+      selectedStore: null
     }
   }
 
@@ -33,14 +34,21 @@ class Main extends Component {
           {this.props.stores && this.props.stores.map(store=> (
             <MapView.Marker key={store.id} coordinate={store.coordinate} title={store.name}
               onPress = {() => {
-                this.setState({selectedStoreId: store.id})
+                //setting both onPress and onSelect as a work around for the react-native-maps issue
+                this.setState({selectedStore: store})
+              }}
+              onSelect = {()=>{
+                this.setState({selectedStore: store})
               }}
             />
           ))}
         </MapView>
-        <Text style={styles.welcome}>
-          {}
-        </Text>
+        <View>
+          <Text style={styles.welcome}>
+            {this.state.selectedStore && this.state.selectedStore.name}
+          </Text>
+          
+        </View>
       </View>
     )
   }
