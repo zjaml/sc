@@ -2,7 +2,6 @@ import merge from "lodash/merge"
 import * as actionTypes from '../constants/ActionTypes'
 
 export function entities(state={}, action){
-  console.log(action);
   if (action.response && action.response.entities){
     return merge({}, state, action.response.entities)
   }

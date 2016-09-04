@@ -26,7 +26,7 @@ class Main extends Component {
           longitudeDelta: 0.0421,
         }}>
           {this.props.stores && this.props.stores.map(store=> (
-            <MapView.Marker coordinate={store.coordinate} title={store.name}/>
+            <MapView.Marker key={store.id} coordinate={store.coordinate} title={store.name}/>
           ))}
         </MapView>
         <Text style={styles.welcome}>
@@ -66,7 +66,11 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-});
+})
+
+Main.propTypes = {
+  stores: React.PropTypes.array
+}
 
 function mapStateToProps(state){
   return {
@@ -74,4 +78,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, {loadTasks})(Main);
+export default connect(mapStateToProps, {loadTasks})(Main)
