@@ -11,12 +11,17 @@ import {getStores} from './common/selectors'
 
 
 class Main extends Component {
+  constructor(){
+    this.state = {
+      selectedStoreId: null
+    }
+  }
+
   componentWillMount() {
     this.props.loadTasks()
   }
   
   render() {
-    console.log(`rendering with: ${this.props.stores}`);
     return (
       <View style={styles.container}>
         <MapView style={styles.map} initialRegion={{
@@ -26,18 +31,15 @@ class Main extends Component {
           longitudeDelta: 0.0421,
         }}>
           {this.props.stores && this.props.stores.map(store=> (
-            <MapView.Marker key={store.id} coordinate={store.coordinate} title={store.name}/>
+            <MapView.Marker key={store.id} coordinate={store.coordinate} title={store.name}
+              onPress = {() => {
+                this.setState({selectedStoreId: store.id})
+              }}
+            />
           ))}
         </MapView>
         <Text style={styles.welcome}>
-          Hello
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload, {'\n'}
-          Shake or press menu button for dev menu
+          {}
         </Text>
       </View>
     )
