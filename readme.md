@@ -35,3 +35,5 @@ https://github.com/lelandrichardson/react-native-maps/issues/165
 Tried this, didn't help 
 
  https://facebook.github.io/react-native/docs/running-on-device-android.html
+
+ 
