@@ -2,16 +2,17 @@ import React, {Component} from 'react'
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native'
 import MapView from 'react-native-maps'
 import {loadTasks} from './common/actions'
 import {connect} from 'react-redux'
 import {getStores} from './common/selectors'
-import _ from 'lodash'
+import {Actions} from 'react-native-router-flux'
 
 class Main extends Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
       selectedStore: null
@@ -21,7 +22,7 @@ class Main extends Component {
   componentWillMount() {
     this.props.loadTasks()
   }
-  
+
   render() {
     return (
       <View style={styles.container}>
@@ -31,23 +32,28 @@ class Main extends Component {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}>
-          {this.props.stores && this.props.stores.map(store=> (
+          {this.props.stores && this.props.stores.map(store => (
             <MapView.Marker key={store.id} coordinate={store.coordinate} title={store.name}
               onPress = {() => {
                 //setting both onPress and onSelect as a work around for the react-native-maps issue
-                this.setState({selectedStore: store})
-              }}
-              onSelect = {()=>{
-                this.setState({selectedStore: store})
-              }}
-            />
-          ))}
+                this.setState({ selectedStore: store })
+              } }
+              onSelect = {() => {
+                this.setState({ selectedStore: store })
+              } }
+              />
+          )) }
         </MapView>
         <View>
-          <Text style={styles.welcome}>
-            {this.state.selectedStore && this.state.selectedStore.name}
-          </Text>
-          
+          {this.state.selectedStore && (
+            <TouchableHighlight onPress={() => {
+              Actions.store()
+            }}
+              activeOpacity={1} underlayColor='gray' style={styles.storePanel}>
+              <Text style={styles.welcome}>
+                {this.state.selectedStore.name}
+              </Text></TouchableHighlight>
+          ) }
         </View>
       </View>
     )
@@ -66,7 +72,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch'
   },
   welcome: {
-    flex: 0,
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
@@ -76,16 +81,18 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  storePanel: {
+  }
 })
 
 Main.propTypes = {
   stores: React.PropTypes.array
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     stores: getStores(state)
   }
 }
 
-export default connect(mapStateToProps, {loadTasks})(Main)
+export default connect(mapStateToProps, { loadTasks })(Main)
