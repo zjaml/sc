@@ -30,7 +30,7 @@ class Store extends Component {
 
   renderTaskRow(task) {
     return (
-      <TouchableHighlight onPress={() => { Actions.task({id: task.id}) } }>
+      <TouchableHighlight underlayColor="#eee" onPress={() => { Actions.task({ id: task.id }) } }>
         <View style={styles.rowContainer}>
           <Text>{task.description}</Text>
         </View>
