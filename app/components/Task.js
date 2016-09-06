@@ -10,7 +10,7 @@ class Task extends Component {
       <View style={globalStyles.navContentContainer}>
         <Text style={styles.title}>{this.props.task.description}</Text>
         <View style={{ alignSelf: 'flex-end', paddingRight: 20 }}>
-          <Button text="Take this task"></Button>
+          <Button text="Take this task" primary='paperTeal'></Button>
         </View>
       </View>
     )
