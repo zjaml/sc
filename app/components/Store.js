@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text,
   StyleSheet, Navigator,
-  ListView
+  ListView, TouchableHighlight
 } from 'react-native'
 import {connect} from 'react-redux'
 import {getTasksForStore} from '../common/selectors'
 import globalStyles from '../globalStyle'
+import {Actions} from 'react-native-router-flux'
+
 
 class Store extends Component {
   constructor(props) {
@@ -28,9 +30,11 @@ class Store extends Component {
 
   renderTaskRow(task) {
     return (
-      <View>
-        <Text>{task.description}</Text>
-      </View>
+      <TouchableHighlight onPress={() => { Actions.task({id: task.id}) } }>
+        <View style={styles.rowContainer}>
+          <Text>{task.description}</Text>
+        </View>
+      </TouchableHighlight>
     )
   }
 }
@@ -40,9 +44,12 @@ Store.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 64
+  rowContainer: {
+    padding: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    borderBottomWidth: 1,
+    borderColor: '#ddd'
   }
 })
 
