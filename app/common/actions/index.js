@@ -2,11 +2,11 @@ import * as actionTypes from '../constants/ActionTypes'
 import {Schema, arrayOf, normalize} from 'normalizr'
 import {stores} from '../dummy/tasks'
 
-const storeSchema = new Schema('store', {
+const storeSchema = new Schema('stores', {
   idAttribute: 'id'
 })
 
-const taskSchema = new Schema('task', {
+const taskSchema = new Schema('tasks', {
   idAttribute: 'id'
 })
 
