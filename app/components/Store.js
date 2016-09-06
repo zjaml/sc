@@ -5,6 +5,7 @@ import {View, Text,
 } from 'react-native'
 import {connect} from 'react-redux'
 import {getTasksForStore} from '../common/selectors'
+import globalStyles from '../globalStyle'
 
 class Store extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Store extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={globalStyles.navContentContainer}>
         <ListView dataSource={this.state.dataSource}
           enableEmptySections={true}
           renderRow={this.renderTaskRow}></ListView>
