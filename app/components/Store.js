@@ -7,25 +7,29 @@ import {connect} from 'react-redux'
 import {getTasksForStore} from '../common/selectors'
 
 class Store extends Component {
-  constructor() {
-    super()
-    var ds = new ListView.Datasource({rowHasChanged: (r1, r2)=> r1 !== r2})
+  constructor(props) {
+    super(props)
+    var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.tasks)
+      dataSource: ds.cloneWithRows(props.tasks)
     }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <ListView dataSource={this.state.dataSource} renderRow={this.renderTaskRow}></ListView>
+        <ListView dataSource={this.state.dataSource}
+          enableEmptySections={true}
+          renderRow={this.renderTaskRow}></ListView>
       </View>
     )
   }
 
-  renderTaskRow() {
+  renderTaskRow(task) {
     return (
-      <View></View>
+      <View>
+        <Text>{task.description}</Text>
+      </View>
     )
   }
 }
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, {id}) {
   return {
     store: state.entities.stores[id],
-    tasks: getTasksForStore(id)
+    tasks: getTasksForStore(state, id)
   }
 }
 

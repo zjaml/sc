@@ -7,10 +7,12 @@ export const getStores = createSelector(
 )
 
 export const getTasksForStore = createSelector(
-  (state, storeId) => state.entities.stores[storeId],
-  store => {
-    if(!store)
+  [(state, storeId) => state.entities.stores[storeId],
+    state => state.entities.tasks],
+  (store, taskDict) => {
+    console.log(store);
+    if (!store)
       return []
-    return store.tasks.map(taskId=> state.entities.tasks[taskId])
+    return store.tasks.map(taskId => taskDict[taskId])
   }
 )
