@@ -47,9 +47,9 @@ class Main extends Component {
         <View>
           {this.state.selectedStore && (
             <TouchableHighlight onPress={() => {
-              Actions.store({id:this.state.selectedStore.id})
+              Actions.store({id:this.state.selectedStore.id, title: this.state.selectedStore.name})
             }}
-              activeOpacity={1} underlayColor='gray' style={styles.storePanel}>
+              activeOpacity={1} underlayColor='#eee' style={styles.storePanel}>
               <Text style={styles.welcome}>
                 {this.state.selectedStore.name}
               </Text></TouchableHighlight>

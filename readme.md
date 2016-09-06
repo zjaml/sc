@@ -1,4 +1,7 @@
 Issues
+* Build error when run react-native run-android after installed react-native-vector-icons.
+  * Fix: must follow the manual install process [here](https://github.com/oblador/react-native-vector-icons#android)
+
 * Cannot evaluate module react-native-maps : Configuration with name 'default' not found
 https://github.com/lelandrichardson/react-native-maps/issues/288
 
