@@ -6,7 +6,7 @@ import globalStyles from '../globalStyle'
 class CameraView extends Component {
   render() {
     return (
-      <View style={globalStyles.navContentContainer}>
+      <View style={[globalStyles.navContentContainer, {backgroundColor: 'gray'}]}>
         <Camera style={styles.preview}
           aspect= {Camera.constants.Aspect.fill}
           captureTarget= {Camera.constants.CaptureTarget.cameraRoll}
@@ -24,7 +24,7 @@ class CameraView extends Component {
 
 var styles = StyleSheet.create({
   preview: {
-    flex: 1,
+    flex: 1
   },
   overlay: {
     position: 'absolute',
