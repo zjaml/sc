@@ -3,6 +3,7 @@ import {Router, Scene} from 'react-native-router-flux'
 import Main from './Main'
 import Store from './components/Store'
 import Task from './components/Task'
+import CameraView from './components/CameraView'
 
 
 export default () => (
@@ -10,5 +11,6 @@ export default () => (
     <Scene key="home" component={Main} title="Map" initial={true}/>
     <Scene key="store" component={Store}/>
     <Scene key="task" component={Task} title="Task"/>
+    <Scene key="camera" component={CameraView} title="Camera"/>
   </Router>
 )

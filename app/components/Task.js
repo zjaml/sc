@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {View, Text, StyleSheet} from 'react-native'
 import globalStyles from '../globalStyle'
 import {Button} from 'react-native-material-design'
+import {Actions} from 'react-native-router-flux'
 
 class Task extends Component {
   constructor() {
@@ -20,7 +21,9 @@ class Task extends Component {
             <Button text="Take this task" onPress={()=>{this.setState({reserved:true})}}></Button>
           </View>)
           : (<View style={{ alignSelf: 'center'}}>
-            <Button text="Take photo"></Button>
+            <Button text="Take photo" onPress={()=>{
+              Actions.camera()
+            }}></Button>
           </View>)
         }
       </View>
