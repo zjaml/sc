@@ -5,13 +5,24 @@ import globalStyles from '../globalStyle'
 import {Button} from 'react-native-material-design'
 
 class Task extends Component {
+  constructor() {
+    super()
+    this.state = {
+      reserved: false
+    }
+  }
   render() {
     return (
       <View style={globalStyles.navContentContainer}>
         <Text style={styles.title}>{this.props.task.description}</Text>
-        <View style={{ alignSelf: 'flex-end', paddingRight: 20 }}>
-          <Button text="Take this task" primary='paperTeal'></Button>
-        </View>
+        {!this.state.reserved ? (
+          <View style={{ alignSelf: 'flex-end', paddingRight: 20 }}>
+            <Button text="Take this task" onPress={()=>{this.setState({reserved:true})}}></Button>
+          </View>)
+          : (<View style={{ alignSelf: 'center'}}>
+            <Button text="Take photo"></Button>
+          </View>)
+        }
       </View>
     )
   }
