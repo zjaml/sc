@@ -10,6 +10,10 @@ NavigatorExperimental on the other hand, is the future for react-native. It's si
 Tutorial:
 https://medium.com/@dabit3/first-look-react-native-navigator-experimental-9a7cf39a615b#.hxrhhxw1y
 
+Interesting way to control the transition animation using NavigationCard's direction prop.(Not fully supported yet)
+https://github.com/ericvicenti/navigation-rfc/issues/3
+
+
 # Issues
 
 * React native map issue running on device
