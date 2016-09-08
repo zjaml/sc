@@ -5,16 +5,24 @@ import Main from './Main'
 import Store from './components/Store'
 import Task from './components/Task'
 import CameraView from './components/CameraView'
+import SideDrawer from './components/SideDrawer'
 
-
-export default () => (
-  <Router>
-    <Scene key="home" component={Main} title="Map" initial={true}/>
-    <Scene key="store" component={Store}/>
-    <Scene key="task" component={Task} title="Task"/>
-    <Scene key="camera" component={CameraView} title="Camera"/>
-  </Router>
-)
+class Route extends React.Component {
+  render() {
+    return (
+      <Router>
+        <Scene key="drawer" component={SideDrawer} open={false}>
+          <Scene key="main">
+            <Scene key="home" component={Main} title="Map" initial={true}/>
+            <Scene key="store" component={Store}/>
+            <Scene key="task" component={Task} title="Task"/>
+            <Scene key="camera" component={CameraView} title="Camera"/>
+          </Scene>
+        </Scene>
+      </Router>
+    )
+  }
+}
 
 var styles = StyleSheet.create({
   navbar: {
@@ -26,3 +34,5 @@ var styles = StyleSheet.create({
     marginTop: 0
   }
 })
+
+export default Route
