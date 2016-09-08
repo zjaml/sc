@@ -1,4 +1,16 @@
-Issues
+# Tech Decisions
+## Abandon react-nativ-router-flux for NavigatorExperimental
+
+Reason: 
+
+react-nativ-router-flux is very popular and looks to be able to define all navigations in a single place. However it is very ill documented although looks otherwise. It seems to aimed for a goal that's too ambitious to make itself too complex and buggy. Even unnatural to do the basic things like jump around scenes of different branches. Turned out to be a time waster.
+
+NavigatorExperimental on the other hand, is the future for react-native. It's similar to react-router for the web app, where all navigation state will be managed in a reducer making it very powerful and flexible, yet convenient to use. 
+
+Tutorial:
+https://medium.com/@dabit3/first-look-react-native-navigator-experimental-9a7cf39a615b#.hxrhhxw1y
+
+# Issues
 
 * React native map issue running on device
 https://github.com/lelandrichardson/react-native-maps/issues/165
