@@ -49,7 +49,12 @@ class NavRoot extends Component {
   }
 
   _handleBackAction () {
+    //return false will propogate the event
+    if (this.props.navigationState.index === 0) {
+      return false
+    }
     this.props.pop()
+    return true
   }
 
   _handleNavigate (action) {
@@ -57,9 +62,12 @@ class NavRoot extends Component {
     switch (action && action.type) {
       case 'push':
         this.props.push(action.route)
+        return true
       case 'back':
       case 'pop':
         return this._handleBackAction()
+      default: 
+        return false
     }
   }
 
