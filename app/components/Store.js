@@ -34,8 +34,9 @@ class Store extends Component {
       <TouchableHighlight underlayColor="#eee" onPress={() => { 
         this.props.push({
           key:'task',
+          title: 'Task',
           props: {
-            id: task.id
+            id: task.id,
           }
         })}}>
         <View style={styles.rowContainer}>

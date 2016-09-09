@@ -24,6 +24,7 @@ class Task extends Component {
             <Button text="Take photo" onPress={() => {
               this.props.push({
                 key: 'camera',
+                noHeader: true,
                 props: {
                   id: this.props.task.id
                 }

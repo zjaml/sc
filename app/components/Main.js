@@ -13,7 +13,6 @@ import {getStores} from '../common/selectors'
 class Main extends Component {
   constructor() {
     super()
-    
     this.state = {
       selectedStore: null
     }
@@ -49,9 +48,9 @@ class Main extends Component {
             <TouchableHighlight onPress={() => {
               this.props.push({
                 key: 'store',
+                title: this.state.selectedStore.name,
                 props: {
-                  id:this.state.selectedStore.id, 
-                  title: this.state.selectedStore.name
+                  id: this.state.selectedStore.id, 
                 }
               })
             }}

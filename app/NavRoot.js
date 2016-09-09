@@ -14,27 +14,50 @@ import {connect} from 'react-redux'
 import {push, pop} from './common/actions'
 
 const {
-  CardStack: NavigationCardStack
+  CardStack: NavigationCardStack,
+  Header: NavigationHeader
 } = NavigationExperimental
 
 class NavRoot extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this._renderScene = this._renderScene.bind(this)
     this._handleBackAction = this._handleBackAction.bind(this)
+    this._renderHeader = this._renderHeader.bind(this)
+    this._renderTitleComponent = this._renderTitleComponent.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     BackAndroid.addEventListener('hardwareBackPress', this._handleBackAction)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this._handleBackAction)
   }
 
-  _renderScene (props) {
+  _renderHeader(props) {
+    if(props.scene.route.noHeader)
+      return null
+    return (
+      <NavigationHeader {...props}
+        renderTitleComponent = {this._renderTitleComponent}
+        onNavigateBack={this._handleBackAction}
+        />
+    )
+  }
+
+  _renderTitleComponent(props) {
+    if(props.scene.route.title)
+      return (<NavigationHeader.Title>
+        {props.scene.route.title}
+      </NavigationHeader.Title>)
+    else 
+      return null
+  }
+
+  _renderScene(props) {
     const { route } = props.scene
-    switch(route.key){
+    switch (route.key) {
       case 'home':
         return <Main/>
       case 'store':
@@ -48,7 +71,7 @@ class NavRoot extends Component {
     }
   }
 
-  _handleBackAction () {
+  _handleBackAction() {
     //return false will propogate the event
     if (this.props.navigationState.index === 0) {
       return false
@@ -57,7 +80,7 @@ class NavRoot extends Component {
     return true
   }
 
-  _handleNavigate (action) {
+  _handleNavigate(action) {
     //todo: what's dispatching push, back and pop?
     switch (action && action.type) {
       case 'push':
@@ -66,25 +89,27 @@ class NavRoot extends Component {
       case 'back':
       case 'pop':
         return this._handleBackAction()
-      default: 
+      default:
         return false
     }
   }
 
-  render () {
+  render() {
     return (
       <NavigationCardStack
+        direction="vertical"
         navigationState={this.props.navigationState}
-        onNavigate={this._handleNavigate.bind(this)}
+        navigate = {this.props._handleNavigate}
+        renderHeader = {this._renderHeader}
         renderScene={this._renderScene} />
-      )
-   }
+    )
+  }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     navigationState: state.navigationState
-   }
+  }
 }
 
-export default connect(mapStateToProps, {push, pop})(NavRoot)
+export default connect(mapStateToProps, { push, pop })(NavRoot)
