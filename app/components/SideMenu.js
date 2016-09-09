@@ -12,6 +12,7 @@ class SideMenu extends Component {
   }
 
   render() {
+    return null
     return (
       <View style={globalStyles.navContentContainer}>
         <ListView dataSource={this.state.dataSource}
@@ -31,7 +32,9 @@ class SideMenu extends Component {
     )
   }
 }
-
+SideMenu.defaultProps = {
+  menus: []
+}
 SideMenu.PropTypes = {
   // menu prop is the children of the navigation state object for the drawer.
   menus: React.PropTypes.array

@@ -8,10 +8,10 @@ import Main from './components/Main'
 import Store from './components/Store'
 import Task from './components/Task'
 import CameraView from './components/CameraView'
-import SideDrawer from './components/SideDrawer'
 import Setting from './components/Setting'
 import {connect} from 'react-redux'
 import {push, pop} from './common/actions'
+
 
 const {
   CardStack: NavigationCardStack,
@@ -36,7 +36,7 @@ class NavRoot extends Component {
   }
 
   _renderHeader(props) {
-    if(props.scene.route.noHeader)
+    if (props.scene.route.noHeader)
       return null
     return (
       <NavigationHeader {...props}
@@ -47,11 +47,11 @@ class NavRoot extends Component {
   }
 
   _renderTitleComponent(props) {
-    if(props.scene.route.title)
+    if (props.scene.route.title)
       return (<NavigationHeader.Title>
         {props.scene.route.title}
       </NavigationHeader.Title>)
-    else 
+    else
       return null
   }
 

@@ -2,11 +2,14 @@ import merge from "lodash/merge"
 import * as actionTypes from '../constants/ActionTypes'
 import { PUSH_ROUTE, POP_ROUTE } from '../constants/ActionTypes'
 import { NavigationExperimental } from 'react-native'
+
+
+
 const {
   StateUtils: NavigationStateUtils
 } = NavigationExperimental
 
-const initialState = {
+const initialNavState = {
   index: 0,
   routes: [{
     key: 'home',
@@ -14,7 +17,7 @@ const initialState = {
   }]
 }
 
-export function navigationState(state = initialState, action) {
+export function navigationState(state = initialNavState, action) {
   switch (action.type) {
     case PUSH_ROUTE:
       return NavigationStateUtils.push(state, action.route)
