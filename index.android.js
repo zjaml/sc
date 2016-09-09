@@ -5,17 +5,18 @@
  */
 
 import React, { Component } from 'react'
-import Route from './app/Route'
+import NavRoot from './app/NavRoot'
 import {AppRegistry} from 'react-native'
 import configureStore from './app/common/store/configureStore'
 import { Provider } from 'react-redux'
-import Example from './app/exp/NavigationExperimentalExample'
 
 const store = configureStore()
 class snapcoin extends Component {
   render() {
     return (
-      <Example/>
+      <Provider store={store}>
+        <NavRoot/>
+      </Provider>
     );
   }
 }

@@ -6,9 +6,9 @@ import {
   TouchableHighlight
 } from 'react-native'
 import MapView from 'react-native-maps'
-import {loadTasks} from './common/actions'
+import {loadTasks} from '../common/actions'
 import {connect} from 'react-redux'
-import {getStores} from './common/selectors'
+import {getStores} from '../common/selectors'
 import {Actions} from 'react-native-router-flux'
 
 class Main extends Component {
