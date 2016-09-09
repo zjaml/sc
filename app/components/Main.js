@@ -11,6 +11,7 @@ import {connect} from 'react-redux'
 import {getStores} from '../common/selectors'
 import Drawer from 'react-native-drawer'
 import SideMenu from './SideMenu'
+import NavigationBar from 'react-native-navbar'
 
 class Main extends Component {
   constructor() {
@@ -25,15 +26,28 @@ class Main extends Component {
   }
 
   render() {
+    var rightButtonConfig = {
+      title: 'Next',
+      handler: function onNext() {
+        alert('hello!');
+      }
+    }
+
+    var titleConfig = {
+      title: 'Hello, world',
+    }
     return (
       <Drawer
-        open={true}
+        open={false}
         type="displace"
         content={<SideMenu />}
         openDrawerOffset={100}
         styles={drawerStyles}
         tweenHandler={Drawer.tweenPresets.parallax}>
         <View style={styles.container}>
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig} />
           <MapView style={styles.map} initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
@@ -62,7 +76,7 @@ class Main extends Component {
                     id: this.state.selectedStore.id,
                   }
                 })
-              }}
+              } }
                 activeOpacity={1} underlayColor='#eee' style={styles.storePanel}>
                 <Text style={styles.welcome}>
                   {this.state.selectedStore.name}
@@ -111,7 +125,7 @@ function mapStateToProps(state) {
 }
 
 const drawerStyles = {
-  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-  main: {paddingLeft: 3},
+  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3 },
+  main: { paddingLeft: 3 },
 }
 export default connect(mapStateToProps, { loadTasks, push })(Main)

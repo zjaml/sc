@@ -14,8 +14,7 @@ import {push, pop} from './common/actions'
 
 
 const {
-  CardStack: NavigationCardStack,
-  Header: NavigationHeader
+  CardStack: NavigationCardStack
 } = NavigationExperimental
 
 class NavRoot extends Component {
@@ -23,8 +22,6 @@ class NavRoot extends Component {
     super(props)
     this._renderScene = this._renderScene.bind(this)
     this._handleBackAction = this._handleBackAction.bind(this)
-    this._renderHeader = this._renderHeader.bind(this)
-    this._renderTitleComponent = this._renderTitleComponent.bind(this)
   }
 
   componentDidMount() {
@@ -33,26 +30,6 @@ class NavRoot extends Component {
 
   componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this._handleBackAction)
-  }
-
-  _renderHeader(props) {
-    if (props.scene.route.noHeader)
-      return null
-    return (
-      <NavigationHeader {...props}
-        renderTitleComponent = {this._renderTitleComponent}
-        onNavigateBack={this._handleBackAction}
-        />
-    )
-  }
-
-  _renderTitleComponent(props) {
-    if (props.scene.route.title)
-      return (<NavigationHeader.Title>
-        {props.scene.route.title}
-      </NavigationHeader.Title>)
-    else
-      return null
   }
 
   _renderScene(props) {
@@ -99,7 +76,6 @@ class NavRoot extends Component {
       <NavigationCardStack
         navigationState={this.props.navigationState}
         navigate = {this.props._handleNavigate}
-        renderHeader = {this._renderHeader}
         renderScene={this._renderScene} />
     )
   }
