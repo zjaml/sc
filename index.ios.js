@@ -15,7 +15,9 @@ const store = configureStore()
 class snapcoin extends Component {
   render() {
     return (
-      <Test></Test>
+      <Provider store={store}>
+        <Route/>
+      </Provider>
     );
   }
 }

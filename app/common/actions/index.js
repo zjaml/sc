@@ -25,3 +25,20 @@ export function loadTasks() {
     }, 100);
   }
 }
+
+export function push(route) {
+  return dispath => {
+    dispatch({
+      type: actionTypes.PUSH_ROUTE,
+      route
+    })
+  }
+}
+
+export function pop() {
+  return dispatch => {
+    dispatch({
+      type: actionTypes.POP_ROUTE
+    })
+  }
+}
