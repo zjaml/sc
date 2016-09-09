@@ -6,14 +6,14 @@ import {
   TouchableHighlight
 } from 'react-native'
 import MapView from 'react-native-maps'
-import {loadTasks} from '../common/actions'
+import {loadTasks, push} from '../common/actions'
 import {connect} from 'react-redux'
 import {getStores} from '../common/selectors'
-import {Actions} from 'react-native-router-flux'
 
 class Main extends Component {
   constructor() {
     super()
+    
     this.state = {
       selectedStore: null
     }
@@ -40,14 +40,20 @@ class Main extends Component {
               } }
               onSelect = {() => {
                 this.setState({ selectedStore: store })
-              } }
+              }}
               />
           )) }
         </MapView>
         <View>
           {this.state.selectedStore && (
             <TouchableHighlight onPress={() => {
-              Actions.store({id:this.state.selectedStore.id, title: this.state.selectedStore.name})
+              this.props.push({
+                key: 'store',
+                props: {
+                  id:this.state.selectedStore.id, 
+                  title: this.state.selectedStore.name
+                }
+              })
             }}
               activeOpacity={1} underlayColor='#eee' style={styles.storePanel}>
               <Text style={styles.welcome}>
@@ -95,4 +101,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { loadTasks })(Main)
+export default connect(mapStateToProps, { loadTasks, push })(Main)

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {View, Text, StyleSheet} from 'react-native'
 import globalStyles from '../globalStyle'
 import {Button} from 'react-native-material-design'
-import {Actions} from 'react-native-router-flux'
+import {push} from '../common/actions'
 
 class Task extends Component {
   constructor() {
@@ -18,12 +18,17 @@ class Task extends Component {
         <Text style={styles.title}>{this.props.task.description}</Text>
         {!this.state.reserved ? (
           <View style={{ alignSelf: 'flex-end', paddingRight: 20 }}>
-            <Button text="Take this task" onPress={()=>{this.setState({reserved:true})}}></Button>
+            <Button text="Take this task" onPress={() => { this.setState({ reserved: true }) } }></Button>
           </View>)
-          : (<View style={{ alignSelf: 'center'}}>
-            <Button text="Take photo" onPress={()=>{
-              Actions.camera()
-            }}></Button>
+          : (<View style={{ alignSelf: 'center' }}>
+            <Button text="Take photo" onPress={() => {
+              this.props.push({
+                key: 'camera',
+                props: {
+                  id: this.props.task.id
+                }
+              })
+            } }></Button>
           </View>)
         }
       </View>
@@ -42,4 +47,4 @@ var styles = StyleSheet.create({
   }
 })
 
-export default connect(mapStateToProps)(Task);
+export default connect(mapStateToProps, { push })(Task);

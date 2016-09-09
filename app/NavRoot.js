@@ -34,8 +34,17 @@ class NavRoot extends Component {
 
   _renderScene (props) {
     const { route } = props.scene
-    if (route.key === 'home') {
-     return <Main/>
+    switch(route.key){
+      case 'home':
+        return <Main/>
+      case 'store':
+        return <Store {...route.props}/>
+      case 'task':
+        return <Task {...route.props}/>
+      case 'camera':
+        return <CameraView {...route.props}/>
+      default:
+        return null
     }
   }
 

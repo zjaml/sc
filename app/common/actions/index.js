@@ -27,7 +27,7 @@ export function loadTasks() {
 }
 
 export function push(route) {
-  return dispath => {
+  return dispatch => {
     dispatch({
       type: actionTypes.PUSH_ROUTE,
       route

@@ -1,7 +1,6 @@
 import Drawer from 'react-native-drawer'
 import {View, Text} from 'react-native'
 import React from 'react'
-import {Actions, DefaultRenderer} from 'react-native-router-flux'
 import SideMenu from './SideMenu'
 
 

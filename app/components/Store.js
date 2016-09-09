@@ -6,7 +6,7 @@ import {View, Text,
 import {connect} from 'react-redux'
 import {getTasksForStore} from '../common/selectors'
 import globalStyles from '../globalStyle'
-import {Actions} from 'react-native-router-flux'
+import {push} from '../common/actions'
 
 
 class Store extends Component {
@@ -16,6 +16,7 @@ class Store extends Component {
     this.state = {
       dataSource: ds.cloneWithRows(props.tasks)
     }
+    this.renderTaskRow = this.renderTaskRow.bind(this)
   }
 
   render() {
@@ -30,7 +31,13 @@ class Store extends Component {
 
   renderTaskRow(task) {
     return (
-      <TouchableHighlight underlayColor="#eee" onPress={() => { Actions.task({ id: task.id }) } }>
+      <TouchableHighlight underlayColor="#eee" onPress={() => { 
+        this.props.push({
+          key:'task',
+          props: {
+            id: task.id
+          }
+        })}}>
         <View style={styles.rowContainer}>
           <Text>{task.description}</Text>
         </View>
@@ -60,4 +67,4 @@ function mapStateToProps(state, {id}) {
   }
 }
 
-export default connect(mapStateToProps)(Store);
+export default connect(mapStateToProps, {push})(Store);
