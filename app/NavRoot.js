@@ -74,7 +74,6 @@ class NavRoot extends Component {
   render () {
     return (
       <NavigationCardStack
-        direction='vertical'
         navigationState={this.props.navigationState}
         onNavigate={this._handleNavigate.bind(this)}
         renderScene={this._renderScene} />
